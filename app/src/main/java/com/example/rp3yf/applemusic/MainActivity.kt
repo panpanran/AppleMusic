@@ -15,6 +15,9 @@ import io.realm.RealmChangeListener
 import io.realm.RealmResults
 import kotlinx.android.synthetic.main.activity_main.*
 import java.util.ArrayList
+import android.support.v4.widget.SwipeRefreshLayout
+
+
 
 
 
@@ -46,6 +49,13 @@ class MainActivity : AppCompatActivity() {
         Log.d(TAG, "Refresh Database")
         loadUserListAsync()
         Log.d(TAG, "Main Data")
+
+        var refreshLayout:SwipeRefreshLayout = findViewById(R.id.swipeRefreshLayout)
+        refreshLayout.setOnRefreshListener( {
+            getMusicData()
+            loadUserListAsync()
+            refreshLayout.setRefreshing(false);
+        })
     }
 
     override fun onDestroy() {
