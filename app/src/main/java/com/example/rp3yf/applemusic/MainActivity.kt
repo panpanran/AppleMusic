@@ -67,20 +67,13 @@ class MainActivity : AppCompatActivity() {
     private fun initViews() {
         musicList = ArrayList()
         mAdapter = MusicAdapter(musicList, this)
-
         // Create LinearLayoutManager instance
         linearLayoutManager = LinearLayoutManager(this)
-
-        // Divider for items
-        dividerItemDecoration = DividerItemDecoration(
-                mainList.context,
-                linearLayoutManager.orientation
-        )
-
         // Set-Up RecyclerView
         mainList.setHasFixedSize(true)
         mainList.layoutManager = linearLayoutManager
-        mainList.addItemDecoration(dividerItemDecoration)
+        mainList.setItemAnimator(DefaultItemAnimator())
+
         mainList.adapter = mAdapter
     }
 
